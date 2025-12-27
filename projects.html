@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects – Jarrett Raghnal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-tertiary: #1a1a1a;
+            --text-primary: #e8e8e8;
+            --text-secondary: #a0a0a0;
+            --text-tertiary: #606060;
+            --accent-primary: #00ff88;
+            --accent-secondary: #00cc6e;
+            --border-color: #2a2a2a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .header {
+            padding: 40px 80px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+        
+        .nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-left: 32px;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        
+        .nav a:hover {
+            color: var(--accent-primary);
+        }
+        
+        .hero {
+            padding: 120px 80px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .hero-title {
+            font-family: 'Space Mono', monospace;
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            line-height: 1;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin-bottom: 80px;
+        }
+        
+        .section-title {
+            font-size: 0.85rem;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 48px;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 48px;
+            margin-bottom: 120px;
+        }
+        
+        .project-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: var(--accent-primary);
+            transition: height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .project-card:hover::before {
+            height: 100%;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-primary);
+        }
+        
+        .project-type {
+            font-size: 0.75rem;
+            color: var(--accent-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 16px;
+        }
+        
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+        
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            line-height: 1.7;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+        
+        .tech-tag {
+            font-size: 0.75rem;
+            padding: 4px 12px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            color: var(--text-tertiary);
+        }
+        
+        .project-impact {
+            padding: 16px;
+            background: var(--bg-tertiary);
+            border-left: 2px solid var(--accent-primary);
+            margin-top: 24px;
+        }
+        
+        .impact-label {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+        }
+        
+        .impact-value {
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+        
+        @media (max-width: 968px) {
+            .header, .hero {
+                padding-left: 40px;
+                padding-right: 40px;
+            }
+            
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="portfolio.html" class="logo">JARRETT RAGHNAL</a>
+        <nav class="nav">
+            <a href="portfolio.html">Home</a>
+            <a href="projects.html">Projects</a>
+            <a href="Jarrett_Raghnal_Resume.pdf" download>Resume</a>
+            <a href="mailto:jraghnal613@gmail.com">Contact</a>
+        </nav>
+    </header>
+    
+    <main class="hero">
+        <h1 class="hero-title">PROJECTS</h1>
+        <p class="hero-subtitle">
+            A selection of enterprise AI integrations and custom applications I've designed, built, and deployed to production.
+        </p>
+        
+        <!-- Enterprise AI Systems -->
+        <div class="section-title">Enterprise AI Integration</div>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-type">Enterprise AI</div>
+                <h2 class="project-title">LLM-Powered Workflow Automation</h2>
+                <p class="project-description">
+                    Built intelligent automation system that processes financial documents and triggers workflows using large language models.
+                    Reduced manual review time while maintaining accuracy through multi-stage validation and confidence scoring.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">OpenAI API</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Document Intelligence</span>
+                    <span class="tech-tag">Workflow Orchestration</span>
+                </div>
+                <div class="project-impact">
+                    <div class="impact-label">Impact</div>
+                    <div class="impact-value">Reduced manual processing by 60%+ across finance operations</div>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-type">Enterprise AI</div>
+                <h2 class="project-title">Vector Search & RAG Pipeline</h2>
+                <p class="project-description">
+                    Designed and deployed vector-based knowledge retrieval system for internal documentation. 
+                    Implemented semantic search with context-aware responses, replacing keyword-based systems.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">Vector Database</span>
+                    <span class="tech-tag">RAG Architecture</span>
+                    <span class="tech-tag">Embeddings</span>
+                    <span class="tech-tag">Claude API</span>
+                </div>
+                <div class="project-impact">
+                    <div class="impact-label">Impact</div>
+                    <div class="impact-value">Improved knowledge retrieval accuracy and reduced search time by 70%</div>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-type">Enterprise AI</div>
+                <h2 class="project-title">AI-Powered Analytics Dashboards</h2>
+                <p class="project-description">
+                    Integrated LLM capabilities into Power BI dashboards for natural language querying and automated insights generation.
+                    Built custom connectors and middleware to bridge AI APIs with enterprise data pipelines.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">Power BI</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">GPT-4</span>
+                    <span class="tech-tag">Azure</span>
+                </div>
+                <div class="project-impact">
+                    <div class="impact-label">Impact</div>
+                    <div class="impact-value">Enabled non-technical users to query complex datasets using natural language</div>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-type">Enterprise AI</div>
+                <h2 class="project-title">Document Intelligence Pipeline</h2>
+                <p class="project-description">
+                    Automated extraction and classification of data from unstructured documents (PDFs, scans, forms).
+                    Combined OCR, NLP, and LLM validation for high-accuracy data extraction at scale.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">Document AI</span>
+                    <span class="tech-tag">OCR</span>
+                    <span class="tech-tag">NLP</span>
+                    <span class="tech-tag">Validation Logic</span>
+                </div>
+                <div class="project-impact">
+                    <div class="impact-label">Impact</div>
+                    <div class="impact-value">Processed 10,000+ documents monthly with 95%+ accuracy</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Custom Applications -->
+        <div class="section-title">Custom AI Applications</div>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-type">Mobile Application</div>
+                <h2 class="project-title">AI Personal Assistant App</h2>
+                <p class="project-description">
+                    React Native mobile application with conversational AI interface. Features voice input, context-aware responses,
+                    and personalized recommendations. Handles both iOS and Android with shared codebase.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">React Native</span>
+                    <span class="tech-tag">OpenAI API</span>
+                    <span class="tech-tag">Voice Recognition</span>
+                    <span class="tech-tag">Node.js Backend</span>
+                </div>
+                <div class="project-impact">
+                    <div class="impact-label">Technical Highlight</div>
+                    <div class="impact-value">Optimized for offline capability with intelligent caching and sync</div>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-type">Web Application</div>
+                <h2 class="project-title">Smart Content Generator</h2>
+                <p class="project-description">
+                    Web application for AI-powered content creation with customizable templates and brand voice training.
+                    Built responsive interface with real-time generation and collaborative editing features.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Claude API</span>
+                    <span class="tech-tag">WebSockets</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                </div>
+                <div class="project-impact">
+                    <div class="impact-label">Technical Highlight</div>
+                    <div class="impact-value">Real-time collaboration with streaming responses and version control</div>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-type">Mobile Application</div>
+                <h2 class="project-title">AI Study Companion</h2>
+                <p class="project-description">
+                    Educational mobile app that adapts to learning styles using AI. Features include smart flashcards,
+                    adaptive quizzes, and personalized study plans. Debugged complex Hermes engine issues for production stability.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">React Native</span>
+                    <span class="tech-tag">GPT-4</span>
+                    <span class="tech-tag">Local Storage</span>
+                    <span class="tech-tag">Analytics</span>
+                </div>
+                <div class="project-impact">
+                    <div class="impact-label">Technical Highlight</div>
+                    <div class="impact-value">Resolved critical iOS crashes in Hermes JavaScript engine for stable production release</div>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-type">Web Platform</div>
+                <h2 class="project-title">Intelligent Dashboard Builder</h2>
+                <p class="project-description">
+                    No-code platform for creating AI-enhanced dashboards. Users can connect data sources and ask questions
+                    in natural language to generate visualizations and insights automatically.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">Next.js</span>
+                    <span class="tech-tag">LangChain</span>
+                    <span class="tech-tag">D3.js</span>
+                    <span class="tech-tag">AWS</span>
+                </div>
+                <div class="project-impact">
+                    <div class="impact-label">Technical Highlight</div>
+                    <div class="impact-value">Converts natural language to SQL queries with 85%+ accuracy</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Process Section -->
+        <div class="section-title">How I Build</div>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-type">Phase 1</div>
+                <h2 class="project-title">Discovery & Design</h2>
+                <p class="project-description">
+                    Understanding the problem, defining requirements, and architecting the solution.
+                    I focus on what AI can actually solve vs. what sounds impressive.
+                </p>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-type">Phase 2</div>
+                <h2 class="project-title">Build & Iterate</h2>
+                <p class="project-description">
+                    Rapid prototyping with production-grade code from day one. Regular testing and feedback loops
+                    to ensure the solution actually works for end users.
+                </p>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-type">Phase 3</div>
+                <h2 class="project-title">Deploy & Monitor</h2>
+                <p class="project-description">
+                    Shipping to production with proper monitoring, error handling, and performance optimization.
+                    No project is "done" until it's running reliably in the real world.
+                </p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
