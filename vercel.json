@@ -1,9 +1,8 @@
 {
-  "version": 2,
-  "public": true,
   "rewrites": [
-    { "source": "/", "destination": "/portfolio.html" },
-    { "source": "/projects", "destination": "/projects.html" }
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/projects", "destination": "/projects.html" },
+    { "source": "/favicon.ico", "destination": "/favicon.svg" }
   ],
   "headers": [
     {
